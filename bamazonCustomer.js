@@ -41,17 +41,12 @@ function purchaseProduct(productID, quantity) {
     let productCost = 0.0;
     let requestedQuantity = quantity;
 
-    console.log("Purchasing productID: " + productID + "  Quantity: " + quantity);
-
-
     if (productID === 0) {
         return 0;
     }
 
     //determine if we have enough products in inventory
     queryStr = "SELECT * from products WHERE item_id = " + productID + ";";
-    console.log("queryProducts() query string is: " + queryStr);
-
     // query the products table to check if sufficient inventory
     connection.query(queryStr, function (err, res) {
         if (err) {
@@ -60,7 +55,9 @@ function purchaseProduct(productID, quantity) {
         }
 
         if (res[0].quantity < requestedQuantity) {
+            console.log("\n\n\n");
             console.log("Insufficient quantity. Only " + res[0].quantity + " items remaining.");
+            console.log("\n\n\n");
             return false;
         }
 
@@ -69,17 +66,12 @@ function purchaseProduct(productID, quantity) {
         // and save inventory on hand 
         productCost = res[0].price * requestedQuantity;
         inventoryQuantity = res[0].quantity;
-        console.log("Sufficient inventory on hand of ProductID = " + productID);
-        console.log("Inventory remaining is : " + inventoryQuantity);
-        console.log("Items request: " + requestedQuantity);
 
         // now update remaining inventory
         inventoryQuantity = inventoryQuantity - requestedQuantity;
 
         queryStr = "UPDATE products SET products.quantity = ";
         queryStr = queryStr + inventoryQuantity + " WHERE item_id = " + productID + ";";
-
-        console.log("queryProductsQuantity() query string is: " + queryStr);
 
         // query the products table for item/product
         connection.query(queryStr, function (err, res) {
@@ -89,7 +81,6 @@ function purchaseProduct(productID, quantity) {
         // display in a table format the item purchased
         console.table(res[0]);
         console.log(" Your purchase was successful. Total cost of purchase is $" + productCost + ".");
-
     });
 
     // separators
@@ -109,10 +100,9 @@ function displayAllProducts() {
 
     // query the products table for item/product
     connection.query(queryStr, function (err, res) {
+        if (err) throw (err);
         console.table(res);
         return (res.length);
-
-        if (err) throw (err);
     });
 
     //separator
@@ -139,7 +129,7 @@ function isUserDone() {
         if (answer.queryUser === true) {
             start();
         }
-        else{
+        else {
             // user is done so terminate connection and then quit out of app
             connection.end();
         }
