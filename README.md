@@ -51,9 +51,9 @@ In this example we are attempting to purchase too many items. When this happens 
 
 This application is intended to be run in a Google Chrome browser and requires: MySQL database, as well as node.js (npm).
 
-Copy all GitHub files into your target/working directory. Make sure node.js (NPM) is installed, otherwise it can be found here [https://nodejs.org/en/]. MySQL can be installed from here [https://www.mysql.com/]. Select either 64 bit or 3 2bit version to install depending on your operating system. 
+Copy all GitHub files into your target/working directory. Make sure node.js (NPM) is installed, otherwise it can be found here [https://nodejs.org/en/]. Install MySQL here [https://www.mysql.com/downloads/]
 
-After both MySQL and NPM are installed,  run the command "npm -i package.jason" in a command window to install all required node package dependencies.   Once both applicaitions have been installed, you will need to run the SQL file in MySQL in order to create the BAmazon database and tables , as well as the required data. At this point you can run the BAMAZON application by typing  "node bamazonCustomer.js" on the command line.
+After both MySQL and NPM are installed,  run the command "npm -i package.jason" in a command window to install all required node package dependencies in the target directory. Once both applicaitions have been installed, you will need to run the BAmazon SQL file bamazone.sql in MySQL in order to create the BAmazon required database and tables , as well as the required data. At this point you can run the BAMAZON application by typing  "node bamazonCustomer.js" on the command line.
 
 
 
